@@ -1,0 +1,3 @@
+interface PublicProfile {
+    displayName: string;
+}

@@ -1,6 +1,9 @@
-import "~/styles/globals.css";
-
+import { type GetServerSidePropsContext } from "next";
+import { type Session } from "next-auth";
 import { Inter } from "next/font/google";
+import { type ReactNode } from "react";
+import "~/styles/globals.css";
+import NextAuthSessionProvider from "./providers/SessionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,14 +16,12 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`${inter.className} bg-gray-950 text-white`}>
+        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+      </body>
     </html>
   );
 }
