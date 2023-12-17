@@ -11,6 +11,7 @@ export default {
             },
         },
     },
+    safelist: ['border-amber-400', 'border-red-600'],
     darkMode: 'class',
     plugins: [nextui()],
 } satisfies Config;

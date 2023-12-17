@@ -49,5 +49,14 @@ model Profile {
     userId    String @unique
     displayName String @unique
     image     String?
+    badges    Badge[]
+    ign      String?
+
     user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+type Badge {
+    name        String
+    description String?
+    color       String
 }

@@ -33,13 +33,28 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
     callbacks: {
-        session: ({ session, user }) => ({
-            ...session,
-            user: {
-                ...session.user,
-                id: user.id,
-            },
-        }),
+        session: async ({ session, user }) => {
+            await db.user.update({
+                where: {
+                    id: user.id,
+                },
+                data: {
+                    image: user.image,
+                    profile: {
+                        update: {
+                            image: user.image,
+                        },
+                    },
+                },
+            });
+            return {
+                ...session,
+                user: {
+                    ...session.user,
+                    id: user.id,
+                },
+            };
+        },
     },
     adapter: PrismaAdapter(db),
     providers: [

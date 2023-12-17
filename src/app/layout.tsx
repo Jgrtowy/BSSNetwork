@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import { type ReactNode } from 'react';
 import '~/styles/globals.css';
 import Header from './components/Header';
+import ProfileCheck from './profileCheck';
 import { Providers } from './providers/Providers';
 
 const inter = Inter({
@@ -17,9 +18,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html lang="en" className="dark">
-            <body className={`${inter.className} bg-gray-950 text-white`}>
+        <html lang="en" className="dark text-white bg-gray-950 overflow-x-hidden">
+            <body className={`${inter.className}`}>
                 <Providers>
+                    <ProfileCheck />
                     <Header />
                     {children}
                 </Providers>

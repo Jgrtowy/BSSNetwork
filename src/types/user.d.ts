@@ -1,3 +1,0 @@
-interface PublicProfile {
-    displayName: string;
-}
